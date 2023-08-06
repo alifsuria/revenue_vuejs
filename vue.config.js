@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/alifsuria.github.io/',
+    publicPath: '/alifsuria.github.io/dist/',
   };
