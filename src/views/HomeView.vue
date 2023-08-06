@@ -1,8 +1,8 @@
 <template>
   <div class="d-flex justify-content-between align-items-center p-3">
-    <h4><b>Browser Revenue Group</b></h4>
+    <h4 class="page-title"><b>Browser Revenue Group</b></h4>
     <button type="button" id="create-new-revenue-group" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      <span><font-awesome-icon :icon="['fas', 'plus']" /></span><span class="ms-2">Create Revenue Group</span>
+      <span><font-awesome-icon :icon="['fas', 'plus']" /></span><span class="ms-2 d-small-none">Create Revenue Group</span>
     </button>
   </div>
   <div class="container">
@@ -15,7 +15,7 @@
           </div>
           <div>
             <button type="button" @click="delete_data(revenue_group_data.id)"
-              class="btn btn-sm btn-outline-secondary rounded-circle"><font-awesome-icon
+              class="delete-group btn btn-sm btn-outline-secondary rounded-circle"><font-awesome-icon
                 :icon="['fas', 'trash']" /></button>
           </div>
         </div>
@@ -26,7 +26,7 @@
 
       <div class="collapse p-3" :id="revenue_group_data.id">
         <div class="">
-          <div class="">
+          <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
@@ -56,7 +56,7 @@
                     {{ rule.revenue }}%
                   </td>
                   <td>
-                    <button @click="delete_rules2(data_index,rule.id)" title="Delete Rule?" class="btn btn-sm btn-secondary">
+                    <button @click="delete_rules2(data_index,rule.id)" title="Delete Rule?" class="rule-delete-btn btn btn-sm btn-secondary">
                       <font-awesome-icon :icon="['fas', 'trash']" />
                     </button>
                   </td>
@@ -100,8 +100,8 @@
             </div>
             <div class="my-5">
               <div class="rule-section-header d-flex justify-content-between">
-                <p class="mb-0">Rules</p>
-                <button class="btn btn-sm" @click="add_new_rule"
+                <p class="mb-0 fs-sm-9">Rules</p>
+                <button class="btn btn-sm fs-sm-85" @click="add_new_rule"
                   style="background-color:#EAEEFE;color:#0D6EFD;border-radius: 1.5rem;"><span><svg width="18" height="18"
                       viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path style="fill: #0D6EFD;"
@@ -114,7 +114,7 @@
                 <div v-for="(rule_item, index) in rules" class="rule-item my-3 p-3" :data_rule_item="index"
                   :key="rule_item.id" style="border: 1px dashed rgba(0, 0, 0, 0.35); border-radius: 10px;">
                   <div class="d-flex justify-content-between mb-3">
-                    <span>Rule {{ index + 1 }}</span>
+                    <span class="fs-sm-85">Rule {{ index + 1 }}</span>
                     <span @click="delete_rules(rule_item, $event)" style="padding: 0px 7px;cursor: pointer;">
                       <font-awesome-icon icon="fa-solid fa-times" />
                     </span>
@@ -122,9 +122,9 @@
                   <div class="data-body" style="background-color: whitesmoke;border-radius: 7px;">
                     <div class="d-flex align-items-start rule-data p-3">
                       <div class="d-flex align-items-center">
-                        <span class="me-2">If</span>
+                        <span class="me-2 fs-sm-85">If</span>
                         <div class="mx-2">
-                          <select class="form-select form-select-sm" @change="data_update(index, $event, 'field')"
+                          <select class="form-select form-select-sm fs-sm-85" @change="data_update(index, $event, 'field')"
                             style="width: 9rem;" aria-label="Small select example">
                             <option selected>Select Field</option>
                             <option value="1">Field 1</option>
@@ -169,12 +169,12 @@
                       </section>
                     </div>
                   </div>
-                  <div class="d-flex align-items-center mt-2"><span>then revenue is</span>
+                  <div class="d-flex align-items-center mt-2 fs-sm-85"><span>then revenue is</span>
                     <div class="ms-2" style="width: 10rem;">
                       <div class="input-group input-group-sm">
                         <input type="text" @keypress="validateKeyPress" @input="revenue_input(index, $event)"
                           class="form-control" placeholder="Enter Amount">
-                        <span class="input-group-text" id="basic-addon2">%</span>
+                        <span class="input-group-text fs-sm-8" id="basic-addon2">%</span>
                       </div>
 
                     </div>
@@ -187,9 +187,9 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="close-btn" @click="closeModal"
+          <button type="button" class="btn btn-secondary fs-sm-8" id="close-btn" @click="closeModal"
             data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" @click.prevent="submitForm">Save changes</button>
+          <button type="button" class="btn btn-primary fs-sm-8" @click.prevent="submitForm">Save changes</button>
           <!-- <button type="submit" class="btn btn-primary">Btn Dummy</button> -->
         </div>
         <!-- </form> -->
@@ -376,6 +376,208 @@ const submitForm = () => {
 
 .add-parameter-btn:hover path{
   fill:#EBEDFD
+}
+
+@media screen and (max-width:567px) {
+  .page-title,.form-label,.fs-sm-9{
+    font-size: 0.9rem;
+  }
+  #create-new-revenue-group{
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+
+  .d-small-none{
+    display: none;
+  }
+  .modal-title{
+    font-size: 0.9rem !important;
+  }
+
+  .form-control,
+  .form-check-label,.fs-sm-85{
+    font-size: 0.85rem;
+  }
+  .fs-sm-8,.card-title{
+    font-size: 0.8rem;
+  }
+  .data-body{
+    overflow-x: scroll;
+  }
+  .parameter-input-field{
+    padding-right: 10px
+  }
+  .parameter-input-field button{
+    white-space: nowrap;
+  }
+  .parameter-field > div > input{
+    width: 10rem;
+  }
+
+  .card-title:after {
+  content: '[Click title to expand]';
+  position: absolute;
+  right: -28%;
+  top: -1.25rem;
+  font-size: 0.65rem;
+  color: grey
+  }
+
+  .delete-group{
+    font-size:0.75rem
+  }
+ 
+  .table thead tr th{
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .table tbody tr td{
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+.rule-delete-btn{
+  font-size: 0.75rem;
+  padding: 2px 5px;
+}
+}
+
+@media  screen and (min-width: 567px) and (max-width:768px) {
+    
+  .page-title,.form-label,.fs-sm-9{
+    font-size: 0.9rem;
+  }
+  #create-new-revenue-group{
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+
+  .d-md-none{
+    display: none;
+  }
+  .modal-title{
+    font-size: 0.9rem !important;
+  }
+
+  .form-control,
+  .form-check-label,.fs-sm-85{
+    font-size: 0.85rem;
+  }
+  .fs-sm-8,.card-title{
+    font-size: 0.8rem;
+  }
+  .data-body{
+    overflow-x: scroll;
+  }
+  .parameter-input-field{
+    padding-right: 10px
+  }
+  .parameter-input-field button{
+    white-space: nowrap;
+  }
+  .parameter-field > div > input{
+    width: 10rem;
+  }
+
+  .card-title:after {
+  content: '[Click title to expand]';
+  position: absolute;
+  right: -26%;
+  top: -1.25rem;
+  font-size: 0.65rem;
+  color: grey
+  }
+
+  .delete-group{
+    font-size:0.75rem
+  }
+ 
+  .table thead tr th{
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .table tbody tr td{
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+.rule-delete-btn{
+  font-size: 0.75rem;
+  padding: 2px 5px;
+}
+}
+
+@media screen and (min-width:769px) and (max-width:991px) {
+  
+  .page-title,.form-label,.fs-sm-9{
+    font-size: 0.9rem;
+  }
+  #create-new-revenue-group{
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+
+  .d-lg-none{
+    display: none;
+  }
+  .modal-title{
+    font-size: 0.9rem !important;
+  }
+
+  .form-control,
+  .form-check-label,.fs-sm-85{
+    font-size: 0.85rem;
+  }
+  .fs-sm-8,.card-title{
+    font-size: 0.8rem;
+  }
+  .data-body{
+    overflow-x: scroll;
+  }
+  .parameter-input-field{
+    padding-right: 10px
+  }
+  .parameter-input-field button{
+    white-space: nowrap;
+  }
+  .parameter-field > div > input{
+    width: 10rem;
+  }
+
+  .card-title:after {
+  content: '[Click title to expand]';
+  position: absolute;
+  right: -28%;
+  top: -1.25rem;
+  font-size: 0.65rem;
+  color: grey
+  }
+
+  .delete-group{
+    font-size:0.75rem
+  }
+ 
+  .table thead tr th{
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .table tbody tr td{
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+.rule-delete-btn{
+  font-size: 0.75rem;
+  padding: 2px 5px;
+}
+}
+
+@media screen and (min-width:991px) and (max-width:1200px) {
+  
+}
+
+@media screen and (min-width: 1200px) {
+  
 }
 </style>
 
