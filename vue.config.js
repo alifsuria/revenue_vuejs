@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/revenue_vuejs/',
+    publicPath: '/alifsuria.github.io/',
   };

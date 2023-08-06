@@ -1,5 +1,5 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import HomeView from './views/HomeView.vue'
 // import HelloWorld from './components/HelloWorld.vue'r
 </script>
 
@@ -15,7 +15,7 @@ import { RouterLink, RouterView } from 'vue-router'
   </ul> -->
   <!-- </div> -->
 
-  <RouterView />
+  <HomeView />
 </template>
 
 <style scoped></style>
